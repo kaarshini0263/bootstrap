@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to cart</title>
+</head>
+<body>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cart-items"></div>
+            <div class="total-price">Total: <span id="total-price">0.00</span></div>
+            <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+        </div>
+    </div>
+    <script>
+        // JavaScript for Cart Functionality
+        let cart = [];
+        let cartCount = 0;
+    
+        // Function to open the cart
+        function openCart() {
+            const offcanvas = new bootstrap.Offcanvas(document.getElementById('cartOffcanvas'));
+            offcanvas.show();
+        }
+    
+        // Function to add an item to the cart
+        function addToCart(itemName, itemPrice, itemImage) {
+            const existingItem = cart.find(item => item.name === itemName);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name: itemName, price: itemPrice, image: itemImage, quantity: 1 });
+            }
+            cartCount++;
+            updateCart();
+        }
+    
+        // Function to update the cart UI
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCountElements = document.querySelectorAll('#cart-count');
+            const totalPriceElement = document.getElementById('total-price');
+            cartItems.innerHTML = '';
+            let totalItems = 0;
+            let totalPrice = 0;
+    
+            // Loop through cart items and update the UI
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <span>${item.name}</span>
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    <div class="quantity-controls">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="decreaseQuantity(${index})">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="increaseQuantity(${index})">+</button>
+                    </div>
+                `;
+                cartItems.appendChild(itemElement);
+                totalItems += item.quantity;
+                totalPrice += item.price * item.quantity;
+            });
+    
+            // Update cart count and total price
+            cartCountElements.forEach(element => {
+                element.textContent = totalItems;
+            });
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+    
+        // Function to increase item quantity
+        function increaseQuantity(index) {
+            cart[index].quantity++;
+            cartCount++;
+            updateCart();
+        }
+    
+        // Function to decrease item quantity
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+                cartCount--;
+            } else {
+                cart.splice(index, 1);
+                cartCount--;
+            }
+            updateCart();
+        }
+    
+        // Function to clear the cart
+        function clearCart() {
+            cart = [];
+            cartCount = 0;
+            updateCart();
+        }
+    </script>
+    
+    <!-- Bootstrap JS (for offcanvas functionality) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    </body>
+    </html>

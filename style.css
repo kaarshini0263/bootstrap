@@ -1,0 +1,77 @@
+ul{
+    margin-left: 60%;
+    padding: 1px;
+}
+li{
+    padding: 5px;
+    font-family: fantasy;
+    font-style: italic;
+}
+.navbar-brand{
+    text-shadow: 3px 5px 7px whitesmoke;
+    font-family: fantasy;
+    font-weight: 400;
+    font-style:italic;
+}
+marquee{
+    
+        font-family: fantasy;
+        font-weight: 400;
+        font-style: italic;
+        color:yellowgreen;
+    
+}
+.carousel-inner{
+    max-width: 100%;
+    margin:auto;
+}
+.carousel-item img{
+    height:500px;
+    
+}
+.card:hover{
+    transform: scale(1.15);
+}
+.grid-layouts.container{
+    border: 2px solid red;
+}
+.categories{
+    font-family: fantasy;
+        font-weight: 400;
+        font-style: italic;
+}
+div.card img{
+    height: 200px;
+}
+body{
+    background-image: url("bg\ img1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment:scroll;
+}
+.line{
+    font-style: italic;
+}
+.content{
+    
+    border-radius: 4px;
+    background-color:rgb(0, 238, 255);
+    height: fit-content;
+    width: fit-content;
+    margin-top: 40px;
+    border-color: black;
+    border-width: 4px;
+    border-style: dotted;
+    text-shadow: 2px 3px 2px rgb(255, 0, 0);
+}
+.navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-icon {
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    margin-right: 10px; /* Space between icon and title */
+  }
+  

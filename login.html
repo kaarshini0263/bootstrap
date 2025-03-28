@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body{
+    background-image: url(backimg.avif);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:300px;
+    margin:80px auto;
+    padding: 20px;
+    color: white;
+}
+.container{
+    
+    border-radius: 8px;
+    
+}
+input{
+    width: 90%; 
+    padding: 6px; 
+    margin:3px 0;
+    border: 2px solid;
+    border-radius: 4px;
+    color: black;
+    margin-left: 10px;
+    margin-top: 6px;
+}
+label{
+    margin-left: 10px;
+}
+#sub{
+    width: 40%;
+    margin-left: 90px;
+    color: black;
+}
+#sub:hover{
+    background-color: lightseagreen;
+}
+input:hover{
+    background-color:whitesmoke;
+}
+  </style>
+</head>
+<body>
+    
+    <h2 style="margin-left: 100px;">Login</h2>
+  <form id="myForm" onsubmit="return validateForm()">
+    <div class="container">
+ 
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email">
+    <span id="emailError"  class="error"style="color:red;"></span><br><br>
+
+    <label for="password">password:</label>
+    <input type="text" id="password" name="password">
+    <span id="passwordError"  class="error" style="color:red;"></span><br><br>
+
+   
+    <input type="submit" value="Login" id="sub">
+    </div>
+  </form>
+
+  <script>
+    function validateForm() {
+
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+document.getElementById("emailError").textContent = "";
+document.getElementById("passwordError").textContent = "";
+
+
+let isValid=true;
+
+
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (email === "") {
+  document.getElementById("emailError").textContent = "*Email is required";
+  isValid= false; 
+} else if (!emailPattern.test(email)) {
+  document.getElementById("emailError").textContent = "*Invalid email format";
+  isValid= false; 
+}
+
+
+if (password === "") {
+  document.getElementById("passwordError").textContent = "*Password is required";
+  isValid= false; 
+} else if (password.length < 6) {
+  document.getElementById("passwordError").textContent = "*Password must be at least 6 characters";
+  isValid= false; 
+}
+
+
+
+if(isValid)
+{
+    alert("logged in successfully")
+}
+else{
+    alert("please fill the required field")
+}
+return isValid;
+}
+  </script>
+</body>
+</html>

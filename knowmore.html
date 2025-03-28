@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Add to Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        .offcanvas {
+            width: 50%;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .quantity-controls button {
+            margin: 0 5px;
+            padding: 2px 8px;
+            font-size: 14px;
+        }
+        .card-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .total-price {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+        }
+        div.card img{
+       height: 200px;
+} 
+div.card{
+    height: 350px;
+    width: 300px;
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav><br>
+
+      <!-- Bakery Items and View Cart Button -->
+<div class="container mt-4">
+    <!-- Bakery Items -->
+    <div class="row">
+
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1349560821/photo/traditional-vanilla-pound-cake-with-orange-extract-bundt-cake.webp?a=1&b=1&s=612x612&w=0&k=20&c=bDF5mjtxenWOsaHXR6uuUzfN-ZFA8rOCdCvaf9eOqxI=" class="card-img-top" alt="wheat cake">
+                <div class="card-body">
+                    <h5 class="card-title">wheat cake</h5>
+                    <p class="card-text">₹250</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('wheat cake', 250, 'https://media.istockphoto.com/id/1349560821/photo/traditional-vanilla-pound-cake-with-orange-extract-bundt-cake.webp?a=1&b=1&s=612x612&w=0&k=20&c=bDF5mjtxenWOsaHXR6uuUzfN-ZFA8rOCdCvaf9eOqxI=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/2151725828/photo/the-donuts-are-freshly-baked-sprinkled-with-delicious-powdered-sugar-and-plain-sugar-free-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=DW5DWq1HUNOZphpMYqpz8guaxMPp9DexMf8KhK2tdL0=" class="card-img-top" alt="wheat donut">
+                <div class="card-body">
+                    <h5 class="card-title">Wheat Donut</h5>
+                    <p class="card-text">₹80</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Wheat Donut', 80, 'https://media.istockphoto.com/id/2151725828/photo/the-donuts-are-freshly-baked-sprinkled-with-delicious-powdered-sugar-and-plain-sugar-free-and.webp?a=1&b=1&s=612x612&w=0&k=20&c=DW5DWq1HUNOZphpMYqpz8guaxMPp9DexMf8KhK2tdL0=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1126893721/photo/low-key-chocolate-smoothies-on-a-table-in-a-rustic-kitchen.webp?a=1&b=1&s=612x612&w=0&k=20&c=uyQyEubzWmpOYpcHIwV_BJtT9qf14p36O9ttr6nBE2U=" class="card-img-top" alt="Nuts shakes">
+                <div class="card-body">
+                    <h5 class="card-title">Nuts shakes</h5>
+                    <p class="card-text">₹150</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Nuts shakes', 150, 'https://media.istockphoto.com/id/1126893721/photo/low-key-chocolate-smoothies-on-a-table-in-a-rustic-kitchen.webp?a=1&b=1&s=612x612&w=0&k=20&c=uyQyEubzWmpOYpcHIwV_BJtT9qf14p36O9ttr6nBE2U=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+
+    <div class="row mb-3">
+
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/683024046/photo/berry-layer-cake-with-whipped-cream.webp?a=1&b=1&s=612x612&w=0&k=20&c=QlW4J6-PCMZOHcyV5yvpu_kiCESAcTJl1K8KIOGGPdQ=" class="card-img-top" alt="strawberry cake">
+                <div class="card-body">
+                    <h5 class="card-title">Strawberry cake</h5>
+                    <p class="card-text">₹300</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Strawberry cake', 300, 'https://media.istockphoto.com/id/683024046/photo/berry-layer-cake-with-whipped-cream.webp?a=1&b=1&s=612x612&w=0&k=20&c=QlW4J6-PCMZOHcyV5yvpu_kiCESAcTJl1K8KIOGGPdQ=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/2113326562/photo/cakes-in-a-bakery-display.webp?a=1&b=1&s=612x612&w=0&k=20&c=I08p9XxYlJ8Jomfdslb1zuXP0vVV_mNUtrXcIVfIHiA=" class="card-img-top" alt="vanilla cake">
+                <div class="card-body">
+                    <h5 class="card-title">Vanilla cake</h5>
+                    <p class="card-text">₹250</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Vanilla cake', 250, 'https://media.istockphoto.com/id/2113326562/photo/cakes-in-a-bakery-display.webp?a=1&b=1&s=612x612&w=0&k=20&c=I08p9XxYlJ8Jomfdslb1zuXP0vVV_mNUtrXcIVfIHiA=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNob2NvbGF0ZSUyMGNha2V8ZW58MHx8MHx8fDA%3D" class="card-img-top" alt="Chocolate Cake">
+                <div class="card-body">
+                    <h5 class="card-title">Chocolate Cake</h5>
+                    <p class="card-text">₹250</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Chocolate Cake', 250, 'https://images.unsplash.com/photo-1626263468007-a9e0cf83f1ac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNob2NvbGF0ZSUyMGNha2V8ZW58MHx8MHx8fDA%3D')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/537312643/photo/blackcurrant-ice-cream.webp?a=1&b=1&s=612x612&w=0&k=20&c=jjrg2iaeYyVcRG27K0JnkK2PIPpT5A_-x3ls-Cm6FZ0=" class="card-img-top" alt="black currant">
+                <div class="card-body">
+                    <h5 class="card-title">Black currant icecream</h5>
+                    <p class="card-text">₹80</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Black currant icecream', 80, 'https://media.istockphoto.com/id/537312643/photo/blackcurrant-ice-cream.webp?a=1&b=1&s=612x612&w=0&k=20&c=jjrg2iaeYyVcRG27K0JnkK2PIPpT5A_-x3ls-Cm6FZ0=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/487960671/photo/homemade-dark-chocolate-ice-cream-cone.webp?a=1&b=1&s=612x612&w=0&k=20&c=1hQAZ5HxszzJrlXHDKwXjgU7gd1CdUyw-oWXFgbcl4w=" class="card-img-top" alt="chocolate">
+                <div class="card-body">
+                    <h5 class="card-title">Chocolate icecream</h5>
+                    <p class="card-text">₹80</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('chocolate icecream', 80, 'https://media.istockphoto.com/id/487960671/photo/homemade-dark-chocolate-ice-cream-cone.webp?a=1&b=1&s=612x612&w=0&k=20&c=1hQAZ5HxszzJrlXHDKwXjgU7gd1CdUyw-oWXFgbcl4w=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/154947062/photo/ice-cream-bar.webp?a=1&b=1&s=612x612&w=0&k=20&c=fenklm6oQQvlcXSjBJ6rXXFk5IzkaMPAEgMB0MT4sDw=" class="card-img-top" alt="Nuts chocobar">
+                <div class="card-body">
+                    <h5 class="card-title">Nuts chocobar icecream</h5>
+                    <p class="card-text">₹120</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Nuts chocobar icecream', 120, 'https://media.istockphoto.com/id/154947062/photo/ice-cream-bar.webp?a=1&b=1&s=612x612&w=0&k=20&c=fenklm6oQQvlcXSjBJ6rXXFk5IzkaMPAEgMB0MT4sDw=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hha2VzfGVufDB8fDB8fHww" class="card-img-top" alt="oreo shake">
+                <div class="card-body">
+                    <h5 class="card-title">Oreo shake</h5>
+                    <p class="card-text">₹150</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Oreo shake', 150, 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2hha2VzfGVufDB8fDB8fHww')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://plus.unsplash.com/premium_photo-1695035006916-bb85c139c70c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hha2VzfGVufDB8fDB8fHww" class="card-img-top" alt="Banana shake">
+                <div class="card-body">
+                    <h5 class="card-title">Banana shake</h5>
+                    <p class="card-text">₹120</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Banana shake', 120, 'https://plus.unsplash.com/premium_photo-1695035006916-bb85c139c70c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2hha2VzfGVufDB8fDB8fHww')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNoYWtlc3xlbnwwfHwwfHx8MA%3D%3D" class="card-img-top" alt="Chocomunch shake">
+                <div class="card-body">
+                    <h5 class="card-title">Chocomunch shake</h5>
+                    <p class="card-text">₹150</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Chocomunch shake', 150, 'https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNoYWtlc3xlbnwwfHwwfHx8MA%3D%3D')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1602351448444-c2daed5f142e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDUxfHx8ZW58MHx8fHx8" class="card-img-top" alt="ice cake">
+                <div class="card-body">
+                    <h5 class="card-title">Ice cake</h5>
+                    <p class="card-text">₹400</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Ice cake', 400, 'https://images.unsplash.com/photo-1602351448444-c2daed5f142e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDUxfHx8ZW58MHx8fHx8')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/157472912/photo/ice-cream-composition-on-a-bowl.webp?a=1&b=1&s=612x612&w=0&k=20&c=e1yPCusQJl2scx955yuv9LUcbx5e7OcARC_VgEDdz5Y=" class="card-img-top" alt="Multi-flav icecream">
+                <div class="card-body">
+                    <h5 class="card-title">Multi-flav icecream</h5>
+                    <p class="card-text">₹150</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Multi-flav icecream', 150, 'https://media.istockphoto.com/id/157472912/photo/ice-cream-composition-on-a-bowl.webp?a=1&b=1&s=612x612&w=0&k=20&c=e1yPCusQJl2scx955yuv9LUcbx5e7OcARC_VgEDdz5Y=')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-2">
+            <div class="card">
+                <img src="https://plus.unsplash.com/premium_photo-1675978198518-b51c2fa69c5b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJsdWUlMjBkb251dHxlbnwwfHwwfHx8MA%3D%3D" class="card-img-top" alt="Cotton candy Donut">
+                <div class="card-body">
+                    <h5 class="card-title">Cotton candy Donut</h5>
+                    <p class="card-text">₹100</p>
+                    <div class="card-buttons">
+                        <button class="btn btn-success" onclick="addToCart('Cotton candy Donut', 100, 'https://plus.unsplash.com/premium_photo-1675978198518-b51c2fa69c5b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGJsdWUlMjBkb251dHxlbnwwfHwwfHx8MA%3D%3D')">Add to Cart</button>
+                        <button class="btn btn-primary" type="button" onclick="openCart()">
+                            View Cart 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    
+</div>
+<!-- Offcanvas Cart -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div id="cart-items"></div>
+        <div class="total-price">Total: $<span id="total-price">0.00</span></div>
+        <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+    </div>
+</div>
